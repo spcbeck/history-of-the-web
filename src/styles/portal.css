@@ -1,0 +1,458 @@
+/* Master Application Shell & Bauhaus Architectural Design System */
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;700;800;900&family=Outfit:wght@400;600;800;900&display=swap');
+
+:root {
+  --bg-dark: #000000;
+  --surface-dark: #111111;
+  --surface-panel: #18181b;
+  --surface-border: #ffffff;
+  --surface-grid-line: #333333;
+  --bauhaus-red: #e52521;
+  --bauhaus-yellow: #f7c600;
+  --bauhaus-blue: #0055a5;
+  --text-main: #ffffff;
+  --text-muted: #a1a1aa;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Outfit', 'Inter', sans-serif;
+  --font-code: 'Fira Code', monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  block-size: 100dvh;
+  inline-size: 100%;
+  overflow: hidden;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: var(--font-sans);
+  line-height: 1.5;
+}
+
+/* Full Viewport App Container */
+#app-container {
+  display: flex;
+  flex-direction: column;
+  block-size: 100dvh;
+  inline-size: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Main Display Area: Fills 100% of Space From Top of Screen to Timeline Switcher */
+.main-stage {
+  flex: 1;
+  inline-size: 100%;
+  block-size: 100%;
+  min-block-size: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+/* Authentic Stage Container */
+.authentic-stage-container {
+  flex: 1;
+  inline-size: 100%;
+  block-size: 100%;
+  background: #000000;
+  border-radius: 0;
+  border: none;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.year-view-wrapper {
+  block-size: 100%;
+  inline-size: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.authentic-render-box {
+  flex: 1;
+  inline-size: 100%;
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.authentic-render-box > div {
+  min-block-size: 100%;
+  inline-size: 100%;
+  box-sizing: border-box;
+}
+
+/* Bottom Sticky Timeline Navigation Controller — Bauhaus Modular Grid */
+.timeline-nav-wrapper {
+  flex-shrink: 0;
+  background: var(--bg-dark);
+  border-block-start: 2px solid var(--surface-border);
+  padding: 0.65rem 1.25rem;
+  z-index: 100;
+}
+
+.timeline-control-panel {
+  max-inline-size: 1440px;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timeline-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: safe center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.era-jump-buttons {
+  display: flex;
+  align-items: safe center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.toolbar-label {
+  font-size: 0.7rem;
+  font-weight: 900;
+  color: var(--bauhaus-yellow);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-inline-end: 0.25rem;
+}
+
+.era-btn {
+  background: var(--surface-dark);
+  border: 1px solid var(--surface-border);
+  color: var(--text-main);
+  padding: 0.3rem 0.65rem;
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.era-btn:hover {
+  background: var(--bauhaus-blue);
+  color: #ffffff;
+}
+
+.playback-controls {
+  display: flex;
+  align-items: safe center;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.control-btn {
+  background: var(--surface-dark);
+  border: 1px solid var(--surface-border);
+  color: var(--text-main);
+  padding: 0.35rem 0.75rem;
+  border-radius: 0;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.control-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.play-btn {
+  background: var(--bauhaus-yellow);
+  color: #000000;
+  border: 1px solid #ffffff;
+  font-weight: 900;
+}
+
+.play-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+.inspect-btn {
+  background: var(--bauhaus-red);
+  border: 1px solid #ffffff;
+  color: #ffffff;
+}
+
+.inspect-btn:hover {
+  background: #ffffff;
+  color: var(--bauhaus-red);
+}
+
+/* Slider Track — Elementary Geometry */
+.scrubber-track-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.timeline-slider {
+  inline-size: 100%;
+  block-size: 6px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--surface-grid-line);
+  border: 1px solid #555555;
+  border-radius: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+.timeline-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  inline-size: 16px;
+  block-size: 16px;
+  border-radius: 0;
+  background: var(--bauhaus-yellow);
+  border: 2px solid #000000;
+  outline: 1px solid #ffffff;
+  cursor: pointer;
+}
+
+.timeline-ticks {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 2px;
+}
+
+.timeline-tick {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.68rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.timeline-tick:hover {
+  color: #ffffff;
+}
+
+.timeline-tick.active {
+  color: var(--bauhaus-yellow);
+  font-weight: 900;
+}
+
+/* Code Inspector Drawer — Bauhaus Architectural Panel */
+.inspector-drawer-container {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-end: -520px;
+  inline-size: 500px;
+  max-inline-size: 92dvw;
+  block-size: 100dvh;
+  background: var(--bg-dark);
+  border-inline-start: 2px solid var(--surface-border);
+  z-index: 200;
+  transition: inset-inline-end 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inspector-drawer-container.open {
+  inset-inline-end: 0;
+}
+
+.inspector-drawer {
+  display: flex;
+  flex-direction: column;
+  block-size: 100%;
+}
+
+.drawer-header {
+  padding: 0.9rem 1.2rem;
+  background: var(--bauhaus-blue);
+  border-block-end: 2px solid var(--surface-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.drawer-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.drawer-icon {
+  background: var(--bauhaus-yellow);
+  color: #000000;
+  padding: 0.1rem 0.35rem;
+  font-family: var(--font-code);
+  font-weight: 900;
+}
+
+.close-btn {
+  background: #000000;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  inline-size: 28px;
+  block-size: 28px;
+  font-size: 1.25rem;
+  font-weight: 900;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  background: var(--bauhaus-red);
+}
+
+.drawer-body {
+  padding: 1.15rem;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  flex: 1;
+}
+
+.tech-stack-banner {
+  background: var(--surface-panel);
+  border: 1px solid #ffffff;
+  border-inline-start: 6px solid var(--bauhaus-yellow);
+  padding: 0.75rem;
+  font-size: 0.82rem;
+  color: #ffffff;
+  line-height: 1.45;
+}
+
+.code-preview-box {
+  background: #050505;
+  border: 2px solid var(--surface-border);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.code-header {
+  background: var(--surface-panel);
+  padding: 0.5rem 0.8rem;
+  font-size: 0.72rem;
+  font-weight: 800;
+  font-family: var(--font-code);
+  color: var(--bauhaus-yellow);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-block-end: 1px solid var(--surface-border);
+}
+
+.copy-btn {
+  background: #000000;
+  border: 1px solid #ffffff;
+  color: var(--text-main);
+  padding: 0.2rem 0.55rem;
+  border-radius: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.copy-btn:hover {
+  background: var(--bauhaus-yellow);
+  color: #000000;
+}
+
+pre {
+  padding: 0.9rem;
+  overflow-x: auto;
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  color: #f4f4f5;
+  line-height: 1.5;
+}
+
+.specs-list-box h4 {
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: var(--bauhaus-yellow);
+  margin-block-end: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.specs-list-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.specs-list-box li {
+  background: var(--surface-panel);
+  border: 1px solid #3f3f46;
+  padding: 0.5rem 0.7rem;
+  border-radius: 0;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  line-height: 1.4;
+}
+
+.spec-cat-badge {
+  background: var(--bauhaus-red);
+  color: #ffffff;
+  padding: 0.1rem 0.4rem;
+  border-radius: 0;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.context-card {
+  background: var(--surface-panel);
+  border: 1px solid #3f3f46;
+  border-inline-start: 4px solid var(--bauhaus-blue);
+  padding: 0.65rem 0.8rem;
+  font-size: 0.8rem;
+  color: #e4e4e7;
+  line-height: 1.45;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .era-jump-buttons {
+    display: none;
+  }
+}
